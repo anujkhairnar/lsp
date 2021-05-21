@@ -61,7 +61,7 @@ int main(int argc,char**argv)
 	ssize_t count = 0,write_count = 0;
 
 //
-	while((count = read(fd,buffer,BUFSIZ) > 0))
+	while((count = read(fd,buffer,BUFSIZ)) > 0)
 	{
 		write_count = write(dst_fd,buffer,count);
 		if(write_count < 0)
