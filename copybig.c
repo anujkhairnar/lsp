@@ -35,6 +35,7 @@ int main(int argc,char**argv)
 	}
 	free(src_file);
 
+	/*
 	char buffer[400000] = {0};
 
 	ssize_t count = read(fd,buffer,400000);
@@ -45,6 +46,7 @@ int main(int argc,char**argv)
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
+	*/
 
 	int dst_fd = creat(dst_file,S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
 	if (dst_fd < 0)
@@ -55,20 +57,20 @@ int main(int argc,char**argv)
 	}
 	free(dst_file);
 	
-	char buffer1[BUFSIZ] = {0};
-	ssize_t count1 = 0,write_count = 0;
+	char buffer[BUFSIZ] = {0};
+	ssize_t count = 0,write_count = 0;
 
 //
-	while((count1 = read(fd,buffer1,BUFSIZ) > 0))
+	while((count = read(fd,buffer,BUFSIZ) > 0))
 	{
-		write_count = write(dst_fd,buffer,count1);
+		write_count = write(dst_fd,buffer,count);
 		if(write_count < 0)
 		{
 			perror("Write ");
 			exit(EXIT_FAILURE);
 		}
 	}
-	if(count1 < 0)
+	if(count < 0)
 	{
 		perror("Read ");
 		exit(EXIT_FAILURE);
