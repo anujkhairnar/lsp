@@ -17,5 +17,5 @@ int main()
 	printf("NAME_MAX = %ld\n", sysconf(_PC_NAME_MAX));
 	printf("PATH_MAX = %ld\n", sysconf(_PC_PATH_MAX));
 	printf("PIPE_BUF = %ld\n", sysconf(_PC_PIPE_BUF));
-
+	return 0;
 }
